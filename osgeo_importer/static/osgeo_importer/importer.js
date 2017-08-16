@@ -88,6 +88,7 @@
     };
 
     this.configureUpload = function(layer) {
+      console.log("This is the layer:" + layer)
       var deferredResponse = q_.defer();
       this.validateConfigurationOptions(layer);
       httpService_.post(layer.resource_uri + 'configure/', layer.configuration_options).success(function(data, status) {

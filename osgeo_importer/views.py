@@ -86,6 +86,7 @@ class FileAddView(ImportHelper, FormView, JSONResponseMixin):
 
         logger.error(self.render_to_json_response({'state': upload.state, 'id': upload.id,
                                                    'count': UploadFile.objects.filter(upload=upload.id).count()}))
+                                                   
         return super(FileAddView, self).form_valid(form)
 
     def render_to_response(self, context, **response_kwargs):
