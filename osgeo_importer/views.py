@@ -69,6 +69,7 @@ class UploadListView(ListView):
 
 class FileAddView(ImportHelper, FormView, JSONResponseMixin):
     logger.error("Entered FileAddView method")
+
     form_class = UploadFileForm
     success_url = reverse_lazy('uploads-list')
     template_name = 'osgeo_importer/new.html'
@@ -83,6 +84,8 @@ class FileAddView(ImportHelper, FormView, JSONResponseMixin):
             return self.render_to_json_response({'state': upload.state, 'id': upload.id,
                                                  'count': UploadFile.objects.filter(upload=upload.id).count()})
 
+        logger.error(self.render_to_json_response({'state': upload.state, 'id': upload.id,
+                                                   'count': UploadFile.objects.filter(upload=upload.id).count()}))
         return super(FileAddView, self).form_valid(form)
 
     def render_to_response(self, context, **response_kwargs):
